@@ -1,0 +1,33 @@
+{
+  "coord": {
+    "lon": "regex:[\\d]+.[\\d]+",
+    "lat": "regex:[\\d]+.[\\d]+"
+  },
+  "weather": [
+    {
+      "id": "regex:[\\d]+",
+      "main": "regex:[a-zA-z]+",
+      "description": "regex:[a-zA-z]+",
+      "icon": "regex:[\\d]+[a-zA-z]+"
+    }
+  ],
+  "base": "regex:[a-zA-z]+",
+  "main": "skip",
+  "visibility": "regex:[\\d]+",
+  "wind": "skip",
+  "clouds": {
+    "all": "regex:[\\d]+"
+  },
+  "dt": "regex:[\\d]+",
+  "sys": {
+    "type": "regex:[\\d]+",
+    "id": ${sysId},
+    "country": "${countryId}",
+    "sunrise": "regex:[\\d]+",
+    "sunset": "regex:[\\d]+"
+  },
+  "timezone": ${timeZone},
+  "id": ${id},
+  "name": "${cityName}",
+  "cod": "regex:[\\d]+"
+}
