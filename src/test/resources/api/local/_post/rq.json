@@ -1,5 +1,0 @@
-{
-  "id": ${id},
-  "body": "${commentText}",
-  "postId": ${postId}
-}

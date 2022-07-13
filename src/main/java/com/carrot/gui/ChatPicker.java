@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.gui.carrot;
+package com.carrot.gui;
 
 import java.util.List;
 

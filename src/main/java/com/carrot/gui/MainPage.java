@@ -1,5 +1,7 @@
-package com.qaprosoft.carina.demo.gui.carrot;
+package com.carrot.gui;
 
+import com.qaprosoft.carina.core.foundation.utils.Configuration;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +11,7 @@ import java.util.List;
 
 public class MainPage extends AbstractPage{
 
-    @FindBy(xpath = "//button[@class='conversations-dropdown-toggle btn btn-sm btn-secondary dropdown-toggle']")
+    @FindBy(xpath = "//button[@class='conversations-dropdown-toggle d-flex justify-space-between align-items-center btn btn-outline-primary dropdown-toggle']")
     private ExtendedWebElement conversationBtn;
 
     @FindBy(css = "cq-radio[value = 'notAssigned']")
@@ -21,9 +23,16 @@ public class MainPage extends AbstractPage{
     @FindBy(xpath = "//div[@translate='conversations.conversationList.assignees.mine']")
     private ExtendedWebElement mineChatsBtn;
 
+    @FindBy(xpath = "//div[@ng-bind='vm.conversation.user.name']")
+    private List<ExtendedWebElement> chatNames;
+
     public MainPage(WebDriver driver) {
         super(driver);
+        setPageAbsoluteURL(R.CONFIG.get(Configuration.Parameter.URL.getKey()));
     }
+
+
+
 
     public void chooseNotAssigned(){
         conversationBtn.click();
@@ -35,6 +44,19 @@ public class MainPage extends AbstractPage{
         mineChatsBtn.click();
         conversationBtn.click();
         notAssignedBtn.click();
+    }
+
+    public void checkAssignedChat(String name){
+        conversationBtn.click();
+        mineChatsBtn.click();
+        for (ExtendedWebElement chatName : chatNames){
+            if (name.equals(chatName.getText())){
+                chatName.click();
+                break;
+            }
+        }
+        ChatWindow chatWindow = new ChatWindow(driver);
+        chatWindow.checkAssigning();
     }
 
     public List<ChatPreview> getNotAssignedChats(){
