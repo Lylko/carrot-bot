@@ -1,5 +1,0 @@
-{
-  <#if postId??>"postId": ${postId},</#if>
-  <#if id??>"id": ${id},</#if>
-  "body": "regex:[a-zA-Z\\d]+"
-}

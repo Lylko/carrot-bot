@@ -1,5 +1,6 @@
-package com.qaprosoft.carina.demo.gui.carrot;
+package com.carrot.gui;
 
+import com.carrot.utils.CryptoUtil;
 import com.qaprosoft.carina.core.foundation.commons.SpecialKeywords;
 import com.qaprosoft.carina.core.foundation.crypto.CryptoTool;
 import com.qaprosoft.carina.core.foundation.utils.R;
@@ -26,13 +27,9 @@ public class LoginPage extends AbstractPage {
     }
 
     public void makeLogin() {
-        CryptoTool cryptoTool = new CryptoTool("/Users/iandrosau/Documents/IdeaProjects/carrot/crypto.key");
-        Pattern CRYPTO_PATTERN = Pattern.compile(SpecialKeywords.CRYPT);
-
-        this.loginField.type(cryptoTool.decryptByPattern(R.TESTDATA.get("login"), CRYPTO_PATTERN));
-        this.passwordField.type(cryptoTool.decryptByPattern(R.TESTDATA.get("password"), CRYPTO_PATTERN));
+        this.loginField.type(CryptoUtil.decrypt(R.TESTDATA.get("login")));
+        this.passwordField.type(CryptoUtil.decrypt(R.TESTDATA.get("password")));
         this.submitBtn.click();
-
     }
 
 }

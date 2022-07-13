@@ -15,17 +15,25 @@
  */
 package com.qaprosoft.carina.demo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import com.qaprosoft.carina.core.foundation.utils.R;
-import com.qaprosoft.carina.demo.gui.carrot.*;
-import org.testng.annotations.Test;
+import com.carrot.gui.ChatPreview;
+import com.carrot.gui.ChatWindow;
+import com.carrot.gui.LoginPage;
+import com.carrot.gui.MainPage;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.core.foundation.utils.R;
+import org.testng.annotations.Test;
+
 
 
 public class FirstTest implements IAbstractTest {
+
+    @Test()
+    public void testy() {
+        MainPage mainPage = new MainPage(getDriver());
+        mainPage.open();
+    }
 
     @Test()
     public void testModelSpecs() {
@@ -55,8 +63,8 @@ public class FirstTest implements IAbstractTest {
             if (mainPage.getNotAssignedChats().size() != 0) {
                 List<ChatPreview> chatList = mainPage.getNotAssignedChats();
                 System.out.println("-------------------\n" + chatList.size() + "\n-------------------");
-                int index = 0;
-                for (ChatPreview chatPreview : chatList) {
+//                int index = 0;
+//                for (ChatPreview chatPreview : chatList) {
                 //---------------------------_FAILES--------------------------
 //                    for (String question : depList) {
 //                        if (chatPreview.getPreviewText().contains(question)) {
@@ -75,51 +83,55 @@ public class FirstTest implements IAbstractTest {
                     //-----------------------------------------------------------
 
 
-                    for (String question : withdList) {
-                        if (chatPreview.getPreviewText().contains(question)) {
-                            System.out.println("-------------------\n" + chatPreview.getPreviewText() + " <====> "
-                                    + question + "\n-------------------");
-                            chatPreview.openChat();
-                            chatWindow.assignToMe();
-                            chatWindow.sayHello(withdrawalMsg);
-                            index = 1;
-                            break;
-                        }
-                    }
-                    if (index == 1) {
-                        break;
-                    }
-                    for (String question : helloList) {
-                        if (chatPreview.getPreviewText().contains(question)) {
-                            System.out.println("-------------------\n" + chatPreview.getPreviewText() + " <====> "
-                                    + question + "\n-------------------");
-                            chatPreview.openChat();
-                            chatWindow.assignToMe();
-                            chatWindow.sayHello(helloMsg);
-                            index = 1;
-                            break;
-                        }
-                    }
-                    if (index == 1) {
-                        break;
-                    }
-                    for (String question : depList) {
-                        if (chatPreview.getPreviewText().contains(question)) {
-                            System.out.println("-------------------\n" + chatPreview.getPreviewText() + " <====> "
-                                    + question + "\n-------------------");
-                            chatPreview.openChat();
-                            chatWindow.assignToMe();
-                            chatWindow.sayHello(depMsg);
-                            index = 1;
-                            break;
-                        }
-                    }
-                    if (index == 1) {
-                        break;
-                    }
-
-                }
-                mainPage.refreshChats();
+//                    for (String question : withdList) {
+//                        if (chatPreview.getPreviewText().contains(question)) {
+//                            System.out.println("-------------------\n" + chatPreview.getPreviewText() + " <====> "
+//                                    + question + "\n-------------------");
+//                            chatPreview.openChat();
+//                            chatWindow.assignToMe();
+//                            chatWindow.sayHello(withdrawalMsg);
+//                            index = 1;
+//                            break;
+//                        }
+//                    }
+//                    if (index == 1) {
+//                        break;
+//                    }
+//                    for (String question : helloList) {
+//                        if (chatPreview.getPreviewText().contains(question)) {
+//                            System.out.println("-------------------\n" + chatPreview.getPreviewText() + " <====> "
+//                                    + question + "\n-------------------");
+//                            chatPreview.openChat();
+//                            chatWindow.assignToMe();
+//                            chatWindow.sayHello(helloMsg);
+//                            index = 1;
+//                            break;
+//                        }
+//                    }
+//                    if (index == 1) {
+//                        break;
+//                    }
+//                    for (String question : depList) {
+//                        if (chatPreview.getPreviewText().contains(question)) {
+//                            System.out.println("-------------------\n" + chatPreview.getPreviewText() + " <====> "
+//                                    + question + "\n-------------------");
+//                            chatPreview.openChat();
+//                            chatWindow.assignToMe();
+//                            chatWindow.sayHello(depMsg);
+//                            index = 1;
+//                            break;
+//                        }
+//                    }
+//                    if (index == 1) {
+//                        break;
+//                    }
+//
+//                }
+                chatList.get(0).openChat();
+                chatWindow.assignToMe();
+                chatWindow.sayHello("Hello, sir! How can I help you?");
+//                String name = chatWindow.takeName();
+//                mainPage.checkAssignedChat(name);
             }
             pause(2);
             mainPage.refreshChats();
